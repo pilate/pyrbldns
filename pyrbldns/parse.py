@@ -39,13 +39,13 @@ def parse(fileobj):
         elif not a_default:
             raise Exception(f'Found resources without a record. Line: {repr(line)}')
 
-        # All other entries... hopefully
+        # all other entries... hopefully
         else:
             a_record, txt_record = a_default, txt_default
 
             match = ENTRY_RE.match(line)
             if not match:
-                raise Exception(f'Unknown line format: {line}')
+                raise ValueError(f'Unknown line format: {line}')
 
             prefix, value = match.groups()
             if value:
